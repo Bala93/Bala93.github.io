@@ -786,7 +786,7 @@ header {
 
 .service {
     position: relative;
-    padding: 40px 20px 40px 70px;
+    padding: 40px 0px 40px 60px;
     margin: 15px 0px;
     border: 1px solid #EEE;
 }
