@@ -389,6 +389,25 @@
 							</div>
 						</div>
 				</div>
+
+				<div class="col-md-3 col-xs-6 work">
+					<img class="img-responsive" src="./img/mitosis.jpg" alt="">
+					<div class="overlay"></div>
+					<div class="work-content">
+						<span>Mitosis annotation tool</span>
+						<h3></h3>
+						<div class="work-link">
+							<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal17">
+									<i class="fa fa-external-link"></i>
+							</button>
+							<!-- <a href="#"><i class="fa fa-external-link"></i></a> -->
+							<!-- <a class="lightbox" href="./img/work6.jpg"><i class="fa fa-search"></i></a> -->
+						</div>
+					</div>
+				</div>
+
+
+
 				<!-- /Work -->
 
 				<!-- Work -->
@@ -454,7 +473,7 @@
 						<div class="overlay"></div>
 						<div class="work-content">
 							<span>List of Websites created</span>
-							<h3></h3>
+								<h3></h3>
 							<div class="work-link">
 								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal13">
 										<i class="fa fa-external-link"></i>
@@ -715,7 +734,11 @@
 					</div>
 					<div class="feature">
 						<i class="fa fa-check"></i>
-						<p>Bachelors, College of Engineering Guindy.</p>
+						<p>B.E, Biomedical Engineering, College of Engineering Guindy.</p>
+					</div>
+					<div class="feature">
+						<i class="fa fa-check"></i>
+						<p>M.S, Electrical Engineering, Indian Institute of Technology -	</p>
 					</div>
 					</br>
 					</br>
@@ -1567,6 +1590,46 @@
 				</div>
 				</div>
 			</div>
+	</div>
+	<!-- Project 16 -->
+
+	<!-- Project 16 -->
+	<div class="modal fade" id="modal17" role="dialog">
+		<div class="modal-dialog modal-lg">
+		
+			<!-- Modal content-->
+			<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Mitosis cell detection - Whole slide Imaging</h4>
+			</div>
+			<div class="modal-body">
+				<p align="justify"> 
+					Breast cancer early diagnosis can be obtained from number of mitotic cells. Pathologists move the slides 
+					and look for mitosis cells in the whole slide. The problem with this approach is it is highly arduous and 
+					time consuming task. And the other biggest worry is variation of selecting mitotic cells between pathologists.
+					As the views here are subjective. Having an automated mitotic cell detection helps in assisting the pathologists 
+					and make their work easier. The detection of mitotic cells is not an easy task because of its similarity with 
+					nuclei cells. Since mitosis undergoes four stages, the intra-class variance of the mitotic class is high, while the 
+					inter class difference between the mitosis and non-mitosis cell is low. This makes it even more hard to design a classifer. 
+					To verify the model, histopath research community has given us three publicly available dataset. 2012,2014 and TUPAC. 
+					We have taken multiple approaches for this problem.
+					1. Treating the mitosis as an object, state of the art object detectors like Faster R-CNN are used. Since the image is of 
+					higher resolution, generally the whole images are patches into small segments and each segment is given to a detector. After
+					obtaining the sub-patch coordinates, it will be mapped to the whole slide. Since Faster R-CNN has an in-built classifier the result
+					will be a bounding box coordinates with confidence score. 
+					2. Treating the same thing as a segmentation problem, segmentation of mitotic cells are carried out for the sub-patches. After performing
+					the segmentation for each patch it is mapped back to the whole image. Now this cells are given to state-of-the art classifiers. 
+				</p>
+				<button type="button" class = "btn  btn-sm btn-success">Arduino</button>
+			</br>
+			</br>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+			</div>
+		</div>
 	</div>
 	<!-- Project 16 -->
 
