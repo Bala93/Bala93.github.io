@@ -11,11 +11,10 @@
 	<title>Balamurali</title>
 
 	<!-- Tab icon -->
-	<link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+	<link rel="shortcut icon" type="image/png" href="img/favicon.jpg"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
-
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 
@@ -396,10 +395,10 @@
 				
 				<!-- Work -->
 				<div class="col-md-2 col-xs-6 work">
-						<img class="img-responsive" src="./img/nissl.jpg" alt="">
+						<img class="img-responsive" src="./img/nissl_disp.jpeg" alt="">
 						<div class="overlay"></div>
 						<div class="work-content">
-							<span>Nissl annotation tool</span>
+							<span>Nissl and fluoro annotation tool</span>
 							<h3></h3>
 							<div class="work-link">
 								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal8">
@@ -799,7 +798,7 @@
 				<div class="col-md-3 col-sm-6">
 					<div class="service">
 						<i class="fa fa-lightbulb-o"></i>
-						<h3> Machine learning</h3>
+						<h3>Deep Learning</h3>
 						<!-- <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero.</p> -->
 					</div>
 				</div>
@@ -819,7 +818,7 @@
 				<div class="col-md-3 col-sm-6">
 					<div class="service">
 						<i class="fa fa-table"></i>
-						<h3>Data science and anaytics</h3>
+						<h3>Computer vision</h3>
 						<!-- <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero.</p> -->
 					</div>
 				</div>
@@ -1942,11 +1941,11 @@
 			</div>
 			<div class="modal-body">
 				 <button type="button" class = "btn  btn-sm btn-primary" >Python</button>
-				 <button type="button" class = "btn  btn-sm btn-info" >OpenCV</button>
+				 <button type="button" class = "btn  btn-sm btn-info" >SimpleITK</button>
 				 <button type="button" class = "btn  btn-sm btn-success" >PyTorch</button>
 				<img src="./img/htic_ge.jpg" alt="" width="10%" height="10%" align="right">
 				<p align="justify"> 
-					
+					MRI is a non-invasive modality that offers an excellent spatial resolution. However, MRI is associated with a slow acquisition process as data samples are acquired in k-space and the acquisition speed is limited by underlying MR physics. Long data acquisition procedures impose significant demands on patients, making the tool expensive and less accessible. Thus, improving the acquisition speed is of utmost importance. In this project, I work toward the acceleration of MRI. The two common MRI acceleration techniques are: 1) Compressive sensing MRI: Instead of traversing the whole k-space only a subset of k-space is obtained, this results in images with aliasing artefacts as it doesn't satisfy Nyquist criterion. Various algorithms have been developed in compressive sensing and dictionary learning to de-alias the resultant image. 2) Multi-coil data acquisition: Instead of acquiring the data by single-coil, data is acquired using multi-coils, algorithms have been developed to combine these multiple coils to give a reconstructed image with a lower time. My project work mainly focuses on using deep learning to compressive sensing MRI. The popular deep learning architectures in MRI reconstruction were implemented. 
 				</p>
 			</br>
 			</br>
@@ -1977,7 +1976,7 @@
 				 <button type="button" class = "btn  btn-sm btn-success" >PyTorch</button>
 				  <img src="./img/htic_ge.jpg" alt="" width="10%" height="10%" align="right">
 				<p align="justify"> 
-					
+					Process development in life sciences is based on work-flows developed in the experimental lab-bench. The optimized and proven workflows in the lab bench are scaled to production. While the workflow setup used in scaled manufacturing has some standardization, setups on a lab-bench can be quite diverse. As clamps are the most commonly used part in these workflows, and are completely manual, they are one of the largest sources of errors in workflows. Hence, there is a need for a reliable platform which helps in identifying various components (such as clamps, tubes, etc), detect their status and check for errors in the workflow to avoid tube bursts, process failures in the system. In this project, algorithms are developed for localizing the clamp and identify the localized clamp’s status. Object detection and classification networks used for clamp localization and status identification. 
 				</p>
 				
 			</br>
