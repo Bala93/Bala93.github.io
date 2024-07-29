@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+    <title>SaLS</title>
+    <link rel="stylesheet" href="./style.css">
+    
+  </head>
+
+  <body>
+
+    <div class="wrapper">
+
+      <section>
+
+      <h2 class="project-name" style="font-weight:normal; font-size: 167%;" align="center">Robust Calibration of Large Vision-Language Adapters</h2>
+      <h3 style="font-weight:normal" align="center">
+          <a href="https://scholar.google.co.in/citations?user=TmuKf44AAAAJ" target="_blank">Balamurali Murugesan</a> &#183;
+          <a href="https://scholar.google.es/citations?user=1UMYgHMAAAAJ" target="_blank">Julio Silva-Rodríguez</a> &#183;
+          <a href="https://scholar.google.es/citations?user=29vyUccAAAAJ" target="_blank">Ismail Ben Ayed</a> &#183;
+          <a href="https://scholar.google.es/citations?user=yHQIFFMAAAAJ" target="_blank">Jose Dolz</a>
+      </h3>
+      <h4 style="font-weight:normal;" align="center"><a href="https://liviamtl.ca/" target="_blank"><autocolor>ÉTS Montreal</autocolor></a> <font color=#000000></font></h4>
+      <h3 style="font-weight:normal; font-size: 167%;" align="center">ECCV 2024</h3>
+
+      <div class="cta">
+          <a href="https://arxiv.org/pdf/2407.13588.pdf" role="button"><i class="fas fa-file-pdf"></i> Paper</a>
+          <a href="https://github.com/bala93/CLIPCALIB/" role="button"><i class="fab fa-github"></i> Code</a>
+      </div>
+
+        <h2 id="contributions">Highlights</h2>
+            <div style="text-align: justify ">
+                <ul>
+                    <li>CLIP adaptation strategies, such as Adapters, Prompt Learning, and Test-Time Prompt Tuning, substantially degrade the calibration capabilities of the zero-shot baseline in the presence of distributional drift.</li>
+                    <li>The underlying cause of miscalibration is, in fact, the increase of the logit ranges and not its norm. </li>
+                    <li>A simple, and model-agnostic solutions, which consists in scaling the logit range of each sample based on the zero-shot logits either at training or inference time. </li>
+                    <li>Comprehensive experiments on popular OOD classification benchmarks empirically demonstrate the effectiveness of our approaches to reduce the miscalibration error, while keeping the discriminative performance. </li>
+                </ul>
+            </div>
+
+<br>
+<h2>Motivation</h2>
+<hr>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="thumbnail">
+            <div class="caption"><p>Miscalibration on Out-of-distribution (OOD) samples.</p></div>
+            <img src="./images/rp.png" alt="Nature" style="width:100%">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="thumbnail">
+            <div class="caption"><p>Logit norm or logit range as the source of miscalibration?</p></div>
+            <img src="./images/lr_ln.png" alt="Nature" style="width:100%">
+        </div>
+    </div>
+</div> 
+
+
+<br>
+<h2>Solution</h2>
+<hr>
+
+<p>
+
+<b>Formulation</b>
+
+</br>
+
+<!-- \(l^{\text{ZS-min}}_{i}\) and \(l^{\text{ZS-max}}_{i}\) are the min and max logit magnitudes of the zero-shot prediction.  -->
+
+<!-- \( \mathbf{Y} \) and \( \mathbf{P} \) are grountruth and softmax predictions. Constraint the range of the logits during the training of a main objective:  -->
+
+$$ \text{minimize} \qquad \mathbf{H}(\mathbf{Y},\mathbf{P}) $$
+$$ \text{subject to} \qquad l^{\text{ZS-min}}_{i} \mathbf{1} \leq l_i \leq l^{\text{ZS-max}}_{i} \mathbf{1} \qquad \forall i \in D$$
+
+<b>Solution 1 : Sample-adaptive logit scaling (SaLS)</b>
+
+$$ l'_i=\frac{(l^{\text{ZS-max}}_{i}-l^{\text{ZS-min}}_{i})}{(l^{\text{max}}_{i}-l^{\text{min}}_{i})} (l_i-l^{\text{min}}_{i}  \mathbf{1})+l^{\text{ZS-min}}_{i} \mathbf{1}$$
+
+<b>Solution 2 : Zero-shot logit normalization (ZS-Norm)</b>
+
+$$ \min_{\boldsymbol{\theta}} \; -\sum_{i\in S}\sum_{k=1}^K y_{ik}\log \frac{\exp{(l'_{ik})}}{\sum_{j=1}^{K}\exp{(l'_{ij})}}$$
+
+<!-- $$ l'_i=\frac{(l^{\text{ZS-max}}_{i}-l^{\text{ZS-min}}_{i})}{(l^{\text{max}}_{i}-l^{\text{min}}_{i})} (l_i-l^{\text{min}}_{i}  \mathbf{1})+l^{\text{ZS-min}}_{i} \mathbf{1},$$ -->
+
+<b>Solution 3 : Explicit Penalty in the learning objective (Penalty)</b>
+
+$$ \min_{\boldsymbol{\theta}} \; \mathbf{H}(\mathbf{Y},\mathbf{P}) + \lambda \sum_{i \in S} \sum_{k=1}^K (\text{ReLU}(l_{ik}-l^{\text{ZS-max}}_{i})+\text{ReLU}(l^{\text{ZS-min}}_{i}-l_{ik}))$$
+
+
+</p>
+
+<br>
+<h2>Results</h2>
+<hr>
+
+<div class="row">
+    <div class="col-md-6">
+      <div class="thumbnail">
+          <div class="caption" style="text-align:center"><p><b>Adapters calibration</b></p></div>
+          <img src="./images/adapters.png" alt="Nature" style="width:100%">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="thumbnail">
+          <div class="caption" style="text-align:center"><p><b>Prompt Learning calibration</b></p></div>
+          <img src="./images/prompt.png" alt="Nature" style="width:100%">
+    </div>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="thumbnail">
+            <div class="caption" style="text-align:center"><p><b>Test-time Prompt Learning calibration</b></p></div>
+            <img src="./images/tpt.png" alt="Nature" style="width:100%">
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div> 
+
+
+<br>
+<h2>Citation</h2>
+<hr>
+
+    <p>Please cite our paper if it is helpful to your work:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> @article{
+        murugesan2024robust,
+        title={Robust Calibration of Large Vision-Language Adapters},
+        author={Murugesan, Balamurali and Silva-Rodriguez, Julio and Ayed, Ismail Ben and Dolz, Jose},
+        journal={arXiv preprint arXiv:2407.13588},
+        year={2024}
+    }    
+    </code></pre></div></div>
+
+<br>
+<h2 id="contact">Contact</h2>
+<hr>
+
+Please feel free to contact us: <a href="mailto:balamurali.murugesan.1@ens.etsmtl.ca" target="_blank">balamurali.murugesan.1@ens.etsmtl.ca</a>.
+    <br>
+    <br>
+
+      </section>
+    </div>
+
+  </body>
+</html>
